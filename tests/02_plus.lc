@@ -20,7 +20,7 @@ eval inc_one :
   INC ONE
   =d> (\n f x -> f (n f x)) ONE
   =a> \f x -> f (ONE f x)
-  =d> \f x -> f ((\f x -> f x) f x)
+  =d> \f x -> f ((\g y -> g y) f x)
   =a> \f x -> f (f x)
   =b> TWO
 
@@ -40,9 +40,9 @@ eval add_two_two :
   =a> INC (INC TWO)
   =d> (\n f x -> f (n f x)) (INC TWO)
   =a> \f x -> f ((INC TWO) f x)
-  =d> \f x -> f ((\n f x -> f (n f x)) TWO f x)
+  =d> \f x -> f ((\m g y -> g (m g y)) TWO f x)
   =a> \f x -> f (f (TWO f x))
-  =d> \f x -> f (f ((\f x -> f (f x)) f x))
+  =d> \f x -> f (f ((\h z -> h (h z)) f x))
   =a> \f x -> f (f (f (f x)))
   =b> FOUR
 
