@@ -39,19 +39,17 @@ let TODO  = \i g n o r e -> i g n o r e
 --------------------------------------------------------------------------------
 
 
-let SKIP1 = \f p -> PAIR TRUE (f (SND p))
 
+let SKIP1 = \f p -> PAIR TRUE (f (SND p))
 
 let DEC = \n -> SND (n SKIP1 (PAIR FALSE ZERO))
 
-
 let SUB = \n m -> m DEC n
-
 
 let ISZ = \n -> n (\_ -> FALSE) TRUE
 
-
 let EQL = \n m -> AND (ISZ (SUB n m)) (ISZ (SUB m n))
+
 
 
 
