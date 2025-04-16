@@ -38,16 +38,15 @@ let TODO  = \i g n o r e -> i g n o r e
 -- do not modify text BEFORE this line
 --------------------------------------------------------------------------------
 
-let SKIP1 = λf.λp. PAIR TRUE (ITE (FST p) (f (SND p)) (SND p))
+let SKIP1 = \f p -> p (\b n -> b (PAIR TRUE (f n)) (PAIR FALSE n))
 
+let DEC = \n -> SECOND (n SKIP1 (PAIR FALSE ZERO))
 
-let DEC = \n -> SND (n (SKIP1 INC) (PAIR FALSE ZERO))
-
-let SUB = \n m -> m DEC n
+let SUB = \m n -> n DEC m
 
 let ISZ = \n -> n (\_ -> FALSE) TRUE
 
-let EQL = \n m -> AND (ISZ (SUB n m)) (ISZ (SUB m n))
+let EQL = \m n -> AND (ISZ (SUB m n)) (ISZ (SUB n m))
 
 
 --------------------------------------------------------------------------------
