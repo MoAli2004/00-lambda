@@ -27,7 +27,7 @@ eval and_true_false :
   =a> ITE TRUE FALSE FALSE
   =d> (\b x y -> b x y) TRUE FALSE FALSE
   =a> TRUE FALSE FALSE
-  =d> (\x y -> x) FALSE FALSE
+  =a> (\x y -> x) FALSE FALSE
   =a> FALSE
   =b> FALSE
 
@@ -37,9 +37,10 @@ eval or_false_true :
   =a> ITE FALSE TRUE TRUE
   =d> (\b x y -> b x y) FALSE TRUE TRUE
   =a> FALSE TRUE TRUE
-  =d> (\x y -> y) TRUE TRUE
+  =a> (\x y -> y) TRUE TRUE
   =a> TRUE
   =b> TRUE
+
 
                  
  
