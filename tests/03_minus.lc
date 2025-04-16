@@ -38,7 +38,8 @@ let TODO  = \i g n o r e -> i g n o r e
 -- do not modify text BEFORE this line
 --------------------------------------------------------------------------------
 
-let SKIP1 = \f p -> PAIR TRUE (ITE (FST p) (f (SND p)) (SND p))
+let SKIP1 = λf.λp. PAIR TRUE (ITE (FST p) (f (SND p)) (SND p))
+
 
 let DEC = \n -> SND (n (SKIP1 INC) (PAIR FALSE ZERO))
 
