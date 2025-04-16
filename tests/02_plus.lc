@@ -29,7 +29,6 @@ eval add_zero_zero :
   =d> (\n m -> n INC m) ZERO ZERO
   =a> ZERO INC ZERO
   =d> (\f x -> x) INC ZERO
-  =a> \x -> x                         
   =a> ZERO
   =b> ZERO
 
@@ -46,3 +45,4 @@ eval add_two_two :
   =d> \f x -> f (f ((\f x -> f (f x)) f x))
   =a> \f x -> f (f (f (f x)))
   =b> FOUR
+
