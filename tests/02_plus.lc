@@ -18,15 +18,31 @@ let MUL   = \n m -> n (ADD m) ZERO
 
 eval inc_one :
   INC ONE
-  -- (a) fill in your reductions here
-  =d> TWO
+  =d> (\n f x -> f (n f x)) ONE                 
+  =a> \f x -> f (ONE f x)                       
+  =d> \f x -> f ((\f x -> f x) f x)             
+  =a> \f x -> f (f x)                            
+  =b> TWO  
 
 eval add_zero_zero :
   ADD ZERO ZERO
-  -- (b) fill in your reductions here
-  =d> ZERO
+  =d> (\n m -> n INC m) ZERO ZERO               
+  =a> ZERO INC ZERO                            
+  =d> (\f x -> x) INC ZERO
+  =a> (\x -> x) ZERO                            
+  =a> ZERO                                     
+  =b> ZERO
 
 eval add_two_two :
   ADD TWO TWO
-  -- (c) fill in your reductions here
-  =d> FOUR
+  =d> (\n m -> n INC m) TWO TWO                 
+  =a> TWO INC TWO                               
+  =d> (\f x -> f (f x)) INC TWO                 
+  =a> INC (INC TWO)                            
+  =d> (\n f x -> f (n f x)) (INC TWO)           
+  =a> \f x -> f ((INC TWO) f x)                 
+  =d> \f x -> f ((\n f x -> f (n f x)) TWO f x)  
+  =a> \f x -> f (f (TWO f x))                  
+  =d> \f x -> f (f ((\f x -> f (f x)) f x))     
+  =a> \f x -> f (f (f (f x)))                   
+  =b> FOUR  
