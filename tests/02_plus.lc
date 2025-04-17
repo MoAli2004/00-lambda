@@ -18,31 +18,59 @@ let MUL   = \n m -> n (ADD m) ZERO
 
 eval inc_one :
   INC ONE
-  =d> (\n f x -> f (n f x)) ONE             
-  =b> \f x -> f (ONE f x)                   
-  =b> \f x -> f ((\f x -> f x) f x)         
-  =b> \f x -> f (f x)                       
-  =d> TWO                                  
+  =d> (\n f x -> f (n f x)) ONE
+  =b> \f x -> f (ONE f x)
+  =d> \f x -> f ((\f x -> f x) f x)
+  =b> (\f x -> f ((\x -> f x) x))
+  =b> \f x -> f (f x)
+  =d> TWO
+
+
+                               
 
 eval add_zero_zero :
   ADD ZERO ZERO
-  =d> (\n m -> n INC m) ZERO ZERO          
-  =b> ZERO INC ZERO                        
-  =b> (\f x -> x) INC ZERO                 
-  =b> ZERO                                 
-  =d> ZERO                                 
+  =d> (\n m -> n INC m) ZERO ZERO
+  =b> (\m -> ZERO INC m) ZERO
+  =b> ZERO INC ZERO
+  =d> (\f x -> x) INC ZERO
+  =b> (\x -> x) ZERO
+  =b> ZERO
+
+
+                               
 
 eval add_two_two :
   ADD TWO TWO
-  =d> (\n m -> n INC m) TWO TWO           
-  =b> TWO INC TWO                          
-  =b> (\f x -> f (f x)) INC TWO            
-  =b> INC (INC TWO)                        
-  =d> (\n f x -> f (n f x)) (INC TWO)     
-  =b> \f x -> f ((INC TWO) f x)            
-  =b> \f x -> f ((\n f x -> f (n f x)) TWO f x)  
-  =b> \f x -> f ((\f x -> f (TWO f x)) f x)      
-  =b> \f x -> f (f (TWO f x))              
-  =b> \f x -> f (f ((\f x -> f (f x)) f x))
-  =b> \f x -> f (f (f (f x)))              
-  =d> FOUR                                 
+  =d> (\n m -> n INC m) TWO TWO
+  =b> TWO INC TWO
+  =d> (\f x -> f (f x)) INC TWO
+  =b> INC (INC TWO)
+  =d> (\n f x -> f (n f x)) (INC TWO)
+  =b> \f x -> f ((INC TWO) f x)
+  =d> \f x -> f ((\n f x -> f (n f x)) TWO f x)
+  =b> \f x -> f (f (TWO f x))
+  =d> \f x -> f (f ((\f x -> f (f x)) f x))
+  =b> \f x -> f (f (f (f x)))
+  =d> FOUR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
